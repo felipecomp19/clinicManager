@@ -89,11 +89,138 @@
 				</div>
 			</div>
 		</div>
-	</div>
+</div>
 
+<div id="modal-form" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h6 id="modal-formLabel">Modal Heading</h6>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal fill-up separate-sections">
+					<div>
+						<label>Enter your name here</label> <input type="text"
+							name="regular" placeholder="Your name" />
+					</div>
+
+					<div class="divider">
+						<span></span>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-6">
+							<label>And a dropdown with search:</label> <select
+								class="chzn-select" name="colors">
+								<option value="Amaranth">Amaranth</option>
+								<option value="Alabama Crimson">Alabama Crimson</option>
+								<option value="Air Force blue (RAF)">Air Force blue
+									(RAF)</option>
+								<option value="Alloy orange">Alloy orange</option>
+								<option value="Alizarin crimson">Alizarin crimson</option>
+								<option value="Anti-flash white">Anti-flash white</option>
+								<option value="Amethyst">Amethyst</option>
+								<option value="Aero blue">Aero blue</option>
+								<option value="Android Green">Android Green</option>
+								<option value="Antique brass">Antique brass</option>
+								<option value="Air superiority blue">Air superiority
+									blue</option>
+								<option value="Amber">Amber</option>
+								<option value="American rose">American rose</option>
+								<option value="Alice blue">Alice blue</option>
+								<option value="Amazon">Amazon</option>
+								<option value="Antique bronze">Antique bronze</option>
+								<option value="SAE/ECE Amber (color)">SAE/ECE Amber
+									(color)</option>
+								<option value="Air Force blue (USAF)">Air Force blue
+									(USAF)</option>
+								<option value="Antique fuchsia ">Antique fuchsia</option>
+								<option value="Almond">Almond</option>
+							</select>
+						</div>
+						<div class="col-lg-6">
+							<label>or without search...</label> <select class="uniform"
+								name="colors">
+								<option value="Air Force blue (USAF)">Air Force blue
+									(USAF)</option>
+								<option value="Alizarin crimson">Alizarin crimson</option>
+								<option value="Amazon">Amazon</option>
+								<option value="American rose">American rose</option>
+								<option value="Anti-flash white">Anti-flash white</option>
+								<option value="Air Force blue (RAF)">Air Force blue
+									(RAF)</option>
+								<option value="Antique bronze">Antique bronze</option>
+								<option value="Antique brass">Antique brass</option>
+								<option value="SAE/ECE Amber (color)">SAE/ECE Amber
+									(color)</option>
+								<option value="Aero blue">Aero blue</option>
+								<option value="Almond">Almond</option>
+								<option value="Amber">Amber</option>
+								<option value="Alloy orange">Alloy orange</option>
+								<option value="Amaranth">Amaranth</option>
+								<option value="Android Green">Android Green</option>
+								<option value="Alice blue">Alice blue</option>
+								<option value="Antique fuchsia ">Antique fuchsia</option>
+								<option value="Air superiority blue">Air superiority
+									blue</option>
+								<option value="Alabama Crimson">Alabama Crimson</option>
+								<option value="Amethyst">Amethyst</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="divider">
+						<span></span>
+					</div>
+
+					<div>
+						<textarea rows="4" placeholder="Enter your comments here"></textarea>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-6">
+							<div>
+								<input type="checkbox" class="icheck" checked="checked" id="icheckModal1" />
+								<label for="icheckModal1">The number one option</label>
+							</div>
+
+							<div>
+								<input type="checkbox" class="icheck" id="icheckModal2"/>
+								<label for="icheckModal2">The number two option</label>
+							</div>
+						</div>
+
+						<div class="col-lg-6">
+							<div>
+								<input type="radio" name="optionsRadios" class="icheck" checked="checked" id="iradioModal1" /> 
+								<label for="iradioModal1">The
+									number one option</label>
+							</div>
+
+							<div>
+								<input type="radio" name="optionsRadios" class="icheck" id="iradioModal2"/> 
+								<label for="iradioModal2">The number two option</label>
+							</div>
+						</div>
+
+					</div>
+				</form>
+
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-default" data-dismiss="modal">Close</button>
+				<button class="btn btn-blue">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="../../../resources/coreAdmin/javascripts/application.js" th:src="@{/resources/coreAdmin/javascripts/application.js}"></script>
 
 <script src="../../../resources/fullcalendar/lib/moment.min.js" th:src="@{/resources/fullcalendar/lib/moment.min.js}" type="text/javascript"></script>
-<script src="../../../resources/fullcalendar/lib/jquery.min.js" th:src="@{/resources/fullcalendar/lib/jquery.min.js}" type="text/javascript"></script>
+
 <script src="../../../resources/fullcalendar/lib/jquery-ui.custom.min.js" th:src="@{/resources/fullcalendar/lib/jquery-ui.custom.min.js}" type="text/javascript"></script>
 
 <script src="../../../resources/fullcalendar/fullcalendar.min.js" th:src="@{/resources/fullcalendar/fullcalendar.min.js}" type="text/javascript"></script>
@@ -202,7 +329,8 @@ $('#myCalendar').fullCalendar(
 		},
 		editable : true,
 		eventClick : function(calEvent, jsEvent, view) {
-			alert('Event: ' + calEvent.title + " : " + calEvent.id + " : " + calEvent.start.format('YYYY-MM-DD HH:mm') + " : " + calEvent.end);
+			$('#modal-form').modal('show');  
+			//alert('Event: ' + calEvent.title + " : " + calEvent.id + " : " + calEvent.start.format('YYYY-MM-DD HH:mm') + " : " + calEvent.end);
 
 			// change the border color just for fun
 			$(this).css('border-color','red');
