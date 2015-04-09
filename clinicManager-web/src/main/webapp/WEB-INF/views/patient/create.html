@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:text="#{label.pacientes}">Pacientes</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="../../../resources/coreAdmin/stylesheets/application.css" rel="stylesheet" media="screen" th:href="@{/resources/coreAdmin/stylesheets/application.css}" />
+	<script src="../../../resources/coreAdmin/javascripts/application.js" th:src="@{/resources/coreAdmin/javascripts/application.js}"></script>
+</head>
+<body>
+	<!-- header -->
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<!-- side bar -->
+	<div th:replace="fragments/sidebar :: sidebar">&nbsp;</div>
+	
+	<div class="main-content">
+	
+		<!-- top main content -->
+		<div th:replace="fragments/mainContent :: mainContent(title_mainContent=#{label.newPatient}, subTitle_mainContent=#{label.newPatient}, icon='icon-group')">&nbsp;</div>
+		
+		<!-- Breadcrumb -->
+		<div class="container padded">
+			<div class="row">
+				<div id="breadcrumbs">
+					<div class="breadcrumb-button blue">
+						<span class="breadcrumb-label"> 
+							<i class="icon-home" th:text="#{label.home}">Home</i>
+						</span> <span class="breadcrumb-arrow"><span></span></span>
+					</div>
+					<div class="breadcrumb-button">
+						<span class="breadcrumb-label"> 
+							<i class="icon-dashboard" th:text="#{label.pacientes}">Pacientes</i>
+						</span> 
+						<span class="breadcrumb-arrow"><span></span></span>
+					</div>
+					<div class="breadcrumb-button">
+						<span class="breadcrumb-label"> 
+							<i class="icon-dashboard" th:text="#{label.newPatient}">New Patient</i>
+						</span> 
+						<span class="breadcrumb-arrow"><span></span></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- [END] Breadcrumb -->
+		
+		<div class="container">
+			<div class="row">
+				<!-- /* Handle the flash message */-->
+				<th:block th:if="${message != null}">
+					<!-- /* The message code is returned from the @Controller */ -->
+					<div th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}})">&nbsp;</div>
+				</th:block>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="box">
+						<div class="box-header">
+							<span class="title" th:text="#{label.form}">Form</span>
+						</div>
+						<div class="box-content">
+							<div th:replace="patient/patientForm :: patientForm(action='/patient/create')">&nbsp;</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

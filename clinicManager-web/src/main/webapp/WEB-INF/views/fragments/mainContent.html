@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:400,600,800}"/>
+	<link href="../../../resources/coreAdmin/stylesheets/application.css" rel="stylesheet" media="screen" th:href="@{/resources/coreAdmin/stylesheets/application.css}" />
+	<script src="../../../resources/coreAdmin/javascripts/application.js" th:src="@{/resources/coreAdmin/javascripts/application.js}"></script>
+</head>
+<body>
+	<div th:fragment="mainContent">
+		<!-- top main content -->
+		<div class="container">
+			<div class="row">
+				<div class="area-top clearfix">
+					<div class="pull-left header">
+						<h3 class="title">
+							<i th:class="${icon}"></i><span th:text=" ${title_mainContent}">Title</span> 
+						</h3>
+						<h5>
+							<span th:text=" ${subTitle_mainContent}">Sub Title</span>
+						</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- [END] top main content -->
+	</div>
+</body>
+</html>

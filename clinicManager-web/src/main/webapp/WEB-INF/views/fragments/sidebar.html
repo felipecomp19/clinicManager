@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link href="../../../resources/coreAdmin/stylesheets/application.css" rel="stylesheet" media="screen" th:href="@{/resources/coreAdmin/stylesheets/application.css}" />
+	<script src="../../../resources/coreAdmin/javascripts/application.js" th:src="@{/resources/coreAdmin/javascripts/application.js}"></script>
+</head>
+<body>
+	<div th:fragment="sidebar">
+		<div class="sidebar-background">
+			<div class="primary-sidebar-background"></div>
+		</div>
+
+		<div class="primary-sidebar">
+			<!-- Main nav -->
+			<ul class="nav navbar-collapse collapse navbar-collapse-primary">
+				<li class="active">
+					<span class="glow" /> 
+					<a href="/" th:href="@{/}"><i class="icon-dashboard icon-2x"></i><span>Dashboard</span></a>
+				</li>
+				<li class="dark-nav">
+					<span class="glow" /> 
+					<a href="/consulta/list" th:href="@{/agenda/}"><i class="icon-calendar icon-2x"></i><span th:text="#{label.agenda}">Agenda</span></a>
+				</li>
+				<li class="dark-nav">
+					<span class="glow" /> 
+					<a	href="/patient/list" th:href="@{/patient/list}" th:text="#{label.pacientes}">Paciente</a>
+				</li>
+				<li class="dark-nav">
+					<span class="glow" /> 
+					<a href="/consulta/list" th:href="@{/consulta/list}" th:text="#{label.consultas}">Consultas</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

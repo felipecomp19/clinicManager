@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:text="#{label.pacientes}">Paciente</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="../../../resources/coreAdmin/stylesheets/application.css" rel="stylesheet" media="screen" th:href="@{/resources/coreAdmin/stylesheets/application.css}" />
+	<script src="../../../resources/coreAdmin/javascripts/application.js" th:src="@{/resources/coreAdmin/javascripts/application.js}"></script>
+</head>
+<body>
+	<!-- header -->
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<!-- side bar -->
+	<div th:replace="fragments/sidebar :: sidebar">&nbsp;</div>
+	
+	<div class="main-content">
+	
+		<!-- top main content -->
+		<div th:replace="fragments/mainContent :: mainContent(title_mainContent=#{label.pacientes}, subTitle_mainContent=#{label.pacientes}, icon='icon-group')">&nbsp;</div>
+		
+		<!-- Breadcrumb -->
+		<div class="container padded">
+			<div class="row">
+				<div id="breadcrumbs">
+					<div class="breadcrumb-button blue">
+						<span class="breadcrumb-label">
+							<i class="icon-home" th:text="#{label.home}">Home</i>
+						</span><span class="breadcrumb-arrow"><span></span></span>
+					</div>
+					<div class="breadcrumb-button">
+						<span class="breadcrumb-label"> 
+							<i class="icon-group" th:text="#{label.pacientes}">Patients</i> 
+						</span> 
+						<span class="breadcrumb-arrow"><span></span></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- [END] Breadcrumb -->
+		
+		<div class="container">
+			<div class="row">
+				<!-- /* Handle the flash message */-->
+				<th:block th:if="${message != null}">
+					<!-- /* The message code is returned from the @Controller */ -->
+					<div
+						th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}})">&nbsp;</div>
+				</th:block>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="box">
+						<div class="box-header">
+							<span class="title" th:text="#{label.pacientes}" ></span>
+							<ul class="box-toolbar">
+								<li>
+									<a href="/patient/create.html" th:href="@{/patient/create}">
+										<button class="btn btn-green">
+											<i class="icon-user"></i>&nbsp;&nbsp;<span th:text="#{label.newPatient}">New Patient</span>
+										</button>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="box-content">
+							<div id="dataTables">
+								<table cellpadding="0" cellspacing="0" border="0" class="dTable responsive">
+									<thead>
+										<tr>
+											<th th:text="#{label.name}">Nome</th>
+											<th th:text="#{label.edit}">Edit</th>
+											<th th:text="#{label.delete}">Delete</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="p : ${patientsList}">
+						      				<td th:text="${p.name}">Nome do paciente</td>
+						      				<td>
+						      					<a th:text="#{label.edit}" href="edit.html" th:href="@{/patient/edit(id=${p.id})}">edit</a>
+						   					</td>
+						      				<td>
+						      					<a th:text="#{label.delete}" href="delete.html" th:href="@{/patient/delete(id=${p.id})}">delete</a>
+						   					</td>
+						    			</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

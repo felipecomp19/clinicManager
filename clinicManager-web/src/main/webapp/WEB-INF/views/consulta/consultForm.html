@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:text="#{label.consultas}">Pacientes</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="../../../resources/coreAdmin/stylesheets/application.css" rel="stylesheet" media="screen" th:href="@{/resources/coreAdmin/stylesheets/application.css}" />
+	<script src="../../../resources/coreAdmin/javascripts/application.js" th:src="@{/resources/coreAdmin/javascripts/application.js}"></script>
+</head>
+<body>
+	<div th:fragment="consultForm">
+		<form class="fill-up" method="post" th:action="${action}" th:object="${consultaForm}">
+			<input type="hidden" id="id" th:field="*{id}"/>
+			<div class="row">
+				<div class="col-md-12">
+					<ul class="padded separate-sections">
+						<li>
+							<!--/* Show general error message when form contains errors */-->
+							<th:block th:if="${#fields.hasErrors('${consultaForm.*}')}">
+								<div th:replace="fragments/alert :: alert (type='danger', message='Form contains errors. Please try again.')">Alert</div>
+							</th:block>
+						</li>
+						
+						<li class="input" style="width: 200px;">
+							<div th:classappend="${#fields.hasErrors('patientId')}? 'has-error'">
+								<label for="patientId" class="col-lg-2 control-label" th:text="#{label.patient}">Paciente</label>
+								<select id="patientId" th:field="*{patientId}">
+									<option th:each="p : ${patientList}" th:value="${p.id}" th:text="${p.name}">Pacientes</option>
+								</select>
+							</div> 
+						</li>
+						
+						<li class="input" style="width: 200px;">
+							<div th:classappend="${#fields.hasErrors('dataDaConsulta')}? 'has-error'">
+								<label for="dataHora" class="col-lg-2 control-label">Data/Hora</label>
+								<div class="col-lg-10">
+									<input type="text" class="form-control" id="dataHora" placeholder="dd/mm/aaaa hh:mm" th:field="*{dataDaConsulta}" value="${{dataDaConsulta}}"/> 
+									<span class="help-block" th:if="${#fields.hasErrors('dataDaConsulta')}" th:errors="*{dataDaConsulta}">Data/Hora inválida</span>
+								</div>
+							</div>
+						</li>
+	        		</ul>
+				</div>
+			</div>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-blue" th:text="#{label.save}">Save</button>
+				<a href="/consulta/list" class="btn btn-default" th:text="#{label.cancel}" th:href="@{/consulta/list}">Cancel</a>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

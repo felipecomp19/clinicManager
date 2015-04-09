@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:spring="http://www.springframework.org/tags">
+<head>
+<title th:text="#{label.consultas}">Consutlas</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="../../../resources/coreAdmin/stylesheets/application.css" rel="stylesheet" media="screen" th:href="@{/resources/coreAdmin/stylesheets/application.css}" />
+	<script src="../../../resources/coreAdmin/javascripts/application.js" th:src="@{/resources/coreAdmin/javascripts/application.js}"></script>
+</head>
+<body>
+	<!-- header -->
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<!-- side bar -->
+	<div th:replace="fragments/sidebar :: sidebar">&nbsp;</div>
+	
+	<div class="main-content">
+	
+		<!-- top main content -->
+		<div th:replace="fragments/mainContent :: mainContent(title_mainContent=#{label.consultas}, subTitle_mainContent=#{label.consultas}), icon='icon-user-md'">&nbsp;</div>
+		
+		<!-- Breadcrumb -->
+		<div class="container padded">
+			<div class="row">
+				<div id="breadcrumbs">
+					<div class="breadcrumb-button blue">
+						<span class="breadcrumb-label" > 
+							<i class="icon-home" th:text="#{label.home}"></i>
+						</span> 
+						<span class="breadcrumb-arrow"><span></span></span>
+					</div>
+					<div class="breadcrumb-button">
+						<span class="breadcrumb-label"> 
+							<i class="icon-dashboard" th:text="#{label.consultas}"></i> 
+						</span> 
+						<span class="breadcrumb-arrow"><span></span></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- [END] Breadcrumb -->
+	
+		<div class="container">
+			<div class="row">
+				<!-- /* Handle the flash message */-->
+				<th:block th:if="${message != null}">
+					<!-- /* The message code is returned from the @Controller */ -->
+					<div
+						th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}})">&nbsp;</div>
+				</th:block>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="box">
+						<div class="box-header">
+							<span class="title" th:text="#{label.consultas}" ></span>
+							<ul class="box-toolbar">
+								<li>
+									<a href="/consulta/create.html" th:href="@{/consulta/create}">
+										<button class="btn btn-green">
+											<i class="icon-user"></i>&nbsp;&nbsp;<span th:text="#{label.newConsult}">New Consult</span>
+										</button>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="box-content">
+							<div id="dataTables">
+								<table cellpadding="0" cellspacing="0" border="0" class="dTable responsive">
+									<thead>
+										<tr>
+											<th th:text="#{label.patient}">Paciente</th>
+											<th th:text="#{label.dataHora}">Data/Hora</th>
+											<th th:text="#{label.edit}">Edit</th>
+											<th th:text="#{label.delete}">Delete</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="c : ${consultasList}">
+						      				<td th:text="${c.patient.name}">Nome do paciente</td>
+						      				<td th:text="${{c.dataHoraDaConsulta}}">Data hora</td>
+						      				<td>
+						      					<a th:text="#{label.edit}" href="edit.html" th:href="@{/consulta/edit(id=${c.id})}">edit</a>
+						   					</td>
+						      				<td>
+						      					<a th:text="#{label.delete}" href="delete.html" th:href="@{/consulta/delete(id=${c.id})}">delete</a>
+						   					</td>
+						    			</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
